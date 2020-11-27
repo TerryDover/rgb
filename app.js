@@ -13,7 +13,7 @@ var resetPressed = true;
 
 
 init();
-
+// Sets up game and inializes the buttons and scores and displays it.
 function init(){
 	setupModeButtons();
 	setupSquares();
@@ -27,7 +27,7 @@ function init(){
 	}
 	reset();
 }
-
+// looks for clicked events and sets if easy/hard
 function setupModeButtons(){
 	for(var i = 0; i < modeButtons.length; i++){
 		modeButtons[i].addEventListener("click", function(){
@@ -39,7 +39,7 @@ function setupModeButtons(){
 		});
 	}
 }
-
+// looks for click events and compairs it to correct answer, displays if correct/not
 function setupSquares(){
 	for(var i = 0; i < squares.length; i++){
 	//add click listeners to squares
@@ -71,7 +71,7 @@ function setupSquares(){
 	}
 }
 
-
+// Pull the RGB numbers from the web
 async function updateColorName(){
 	const regex = /\([^\)]+\)/g; 
 	var rgbColors = pickedColor.match(regex); 
@@ -91,7 +91,7 @@ async function updateColorName(){
 		colorDisplay.textContent = colorData.name.value + "-ish"; 
 	}
 }
-
+// reset the game and reloads the new color pallet
 function reset(){
 	resetPressed = true;
 	colors = generateRandomColors(numSquares);
@@ -116,7 +116,7 @@ function reset(){
 resetButton.addEventListener("click", function(){
 	reset();
 })
-
+// if correct color selected it changes all the blocks colors and header to the winning color
 function changeColors(color){
 	//loop through all squares
 	for(var i = 0; i < squares.length; i++){
@@ -124,12 +124,12 @@ function changeColors(color){
 		squares[i].style.background = color;
 	}
 }
-
+// random color picker
 function pickColor(){
 	var random = Math.floor(Math.random() * colors.length);
 	return colors[random];
 }
-
+// random color generator and pushes it to application
 function generateRandomColors(num){
 	//make an array
 	var arr = []
@@ -141,7 +141,7 @@ function generateRandomColors(num){
 	//return that array
 	return arr;
 }
-
+// pallet of colors to select from
 function randomColor(){
 	//pick a "red" from 0 - 255
 	var r = Math.floor(Math.random() * 256);
